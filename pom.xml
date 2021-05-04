@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>be.kuleuven.occam</groupId>
+    <artifactId>ryder-backend</artifactId>
+    <version>1.0-LATEST-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>ryder-backend</name>
+    <description>Ryder Backend</description>
+
+     <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.5</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>be.occam.ryder.RyderApplication</start-class>
+        <java.version>11</java.version>
+        <guava.version>19.0</guava.version>
+        <okhttp.version>3.4.1</okhttp.version>
+        <retrofit.version>2.3.0</retrofit.version>
+        <logback-access.version>1.1.11</logback-access.version>
+        <ext-logback-access.version>1.6</ext-logback-access.version>
+        <logstash-logback-encoder.version>4.7</logstash-logback-encoder.version>
+    </properties>
+
+    <dependencies>
+    
+    	<dependency>
+  			<groupId>be.occam</groupId>
+  			<artifactId>occam-utils</artifactId>
+  			<version>1.0-LATEST-SNAPSHOT</version>
+  			<exclusions>
+  				<exclusion>
+  					<groupId>org.slf4j</groupId>
+  					<artifactId>slf4j-log4j12</artifactId>
+  				</exclusion>
+  			</exclusions>
+		</dependency>
+		
+        <!-- Needed when using JDK9+ -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+   			<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+    	<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+       <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
+        <!-- 
+        -->
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>        
+        
+        <!-- persistence -->
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        
+        <!-- for now, use in-memory database  
+        <dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		-->
+		<!-- utils -->
+        
+ 		<dependency>
+      		<groupId>commons-codec</groupId>
+      		<artifactId>commons-codec</artifactId>
+    	</dependency>
+    	<dependency>
+      		<groupId>commons-httpclient</groupId>
+      		<artifactId>commons-httpclient</artifactId>
+      		<version>3.1</version>
+    	</dependency>
+    	<dependency>
+	    	<groupId>org.json</groupId>
+	        <artifactId>json</artifactId>
+		    <version>20090211</version>
+		</dependency>
+    	<dependency>
+      		<groupId>log4j</groupId>
+      		<artifactId>log4j</artifactId>
+      		<version>1.2.15</version>
+      		<exclusions>
+        		<exclusion>
+          			<groupId>com.sun.jmx</groupId>
+          			<artifactId>jmxri</artifactId>
+        		</exclusion>
+        		<exclusion>
+          			<groupId>com.sun.jdmk</groupId>
+          			<artifactId>jmxtools</artifactId>
+        		</exclusion>
+        		<exclusion>
+          			<groupId>javax.jms</groupId>
+          			<artifactId>jms</artifactId>
+        		</exclusion>
+      		</exclusions>
+    	</dependency>    	
+        <!-- Needed for using JsonBuilder -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-json</artifactId>
+            <version>2.4.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- google collection goodies -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <!-- the java way to get a file extension ;p -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- needed to parse xml with retorfit client -->
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Need for Kibana-friendly log format -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash-logback-encoder.version}</version>
+        </dependency>
+
+        <!-- HTTP access logging -->
+        <dependency>
+            <groupId>net.rakugakibox.springbootext</groupId>
+            <artifactId>spring-boot-ext-logback-access</artifactId>
+            <version>${ext-logback-access.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback-access.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.damnhandy</groupId>
+            <artifactId>handy-uri-templates</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        
+        <dependency>
+  			<groupId>org.imsglobal</groupId>
+  			<artifactId>basiclti-util</artifactId>
+  			<version>1.2.0</version>
+		</dependency>
+		
+		<!-- for telnet to SMP -->
+		
+		<dependency>
+    		<groupId>commons-net</groupId>
+    		<artifactId>commons-net</artifactId>
+    		<version>3.6</version>
+		</dependency>
+		
+		<!-- TEST -->
+		<dependency>
+		     <groupId>org.hsqldb</groupId>
+       	     <artifactId>hsqldb</artifactId>
+       	     <scope>runtime</scope>
+		</dependency>
+        
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>springloaded</artifactId>
+                        <version>1.2.6.RELEASE</version>
+                    </dependency>
+                </dependencies>
+                 <configuration>
+        			<!-- disable process forking that is enabled by default in spring-boot 2.2.0.RELEASE and higher -->
+        		<fork>false</fork>
+    </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.1</version>
+            </plugin>
+            <!-- expose git commit info as properties -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.3</version>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.3</version>
+                <configuration>
+                    <repository>registry.icts.kuleuven.be/toledo/${project.artifactId}</repository>
+                    <tag>${project.version}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

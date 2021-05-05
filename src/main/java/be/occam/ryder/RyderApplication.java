@@ -14,11 +14,13 @@ public class RyderApplication extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
     	// @formatter:off
-        http
-        	.authorizeRequests()
-        	.anyRequest().authenticated()
-        	.and()
-        	.oauth2Login();
+    	 http
+         .antMatcher("/**")
+         .authorizeRequests()
+           .antMatchers("/", "/login**","/callback/", "/webjars/**", "/error**")
+           .permitAll()
+         .anyRequest()
+           .authenticated();
     }
 	
 	public static void main(String[] args) {

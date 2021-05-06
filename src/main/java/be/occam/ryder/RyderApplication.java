@@ -17,10 +17,12 @@ public class RyderApplication extends WebSecurityConfigurerAdapter {
     	 http
          .antMatcher("/**")
          .authorizeRequests()
-           .antMatchers("/", "/login**","/callback/", "/webjars/**", "/error**")
+           .antMatchers("/login/**","/webjars/**", "/error**")
            .permitAll()
          .anyRequest()
-           .authenticated();
+           .authenticated()
+           .and()
+           .oauth2Login();
     }
 	
 	public static void main(String[] args) {
